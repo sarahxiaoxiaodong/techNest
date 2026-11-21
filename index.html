@@ -1,68 +1,713 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="HealthBridge helps older adults learn about healthcare, find trusted services, and connect with support.">
   <meta name="theme-color" content="#315b48">
+
   <title>HealthBridge | Queen Best Helpers</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"><script src="script.js" defer></script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- MediaPipe face detection -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js"></script>
+
+  <!-- Main JavaScript -->
+  <script src="script.js" defer></script>
 </head>
+
 <body>
+
 <a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- HEADER -->
 <header class="site-header">
-  <a class="brand" href="#home"><span class="brand-mark">✳</span> HealthBridge</a>
-  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Open navigation">☰</button>
-  <nav class="main-nav" id="mainNav" aria-label="Main navigation"><a href="#learn">Learn</a><a href="#services">Find services</a><a href="#connect">Connect</a><a href="#check-readings">Check readings</a></nav>
+
+  <a class="brand" href="#home">
+    <span class="brand-mark">✳</span> HealthBridge
+  </a>
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-expanded="false"
+    aria-controls="mainNav"
+    aria-label="Open navigation"
+    type="button"
+  >
+    ☰
+  </button>
+
+  <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+    <a href="#learn">Learn</a>
+    <a href="#services">Find services</a>
+    <a href="#connect">Connect</a>
+    <a href="#check-readings">Check readings</a>
+  </nav>
+
 </header>
+
 <main id="main">
-<section class="hero section" id="home">
- <div class="hero-copy"><p class="eyebrow">HEALTHCARE, MADE EASIER TO UNDERSTAND</p><h1>A clearer path to better-informed healthcare.</h1><p class="hero-lead">HealthBridge helps patients understand health information, find trusted services, and connect with people who can help.</p><a class="button button-primary" href="#learn">Explore HealthBridge <span aria-hidden="true">↓</span></a></div>
- <div class="hero-panel"><p class="eyebrow">FOUR WAYS WE HELP</p><a class="overview-link" href="#learn"><span>01</span><div><strong>Learn</strong><small>Understand healthcare in plain language.</small></div><b>→</b></a><a class="overview-link" href="#services"><span>02</span><div><strong>Find services</strong><small>Discover trusted support in Newfoundland and Labrador.</small></div><b>→</b></a><a class="overview-link" href="#connect"><span>03</span><div><strong>Connect</strong><small>Bring volunteers and seniors together.</small></div><b>→</b></a><a class="overview-link" href="#check-readings"><span>04</span><div><strong>Check readings</strong><small>View heart-rate and oxygen readings from a connected sensor.</small></div><b>→</b></a></div>
-</section>
-<section class="section learn-section" id="learn"><div class="section-heading"><p class="eyebrow">01 · LEARN</p><h2>Understand healthcare, one topic at a time.</h2><p>Short, easy-to-read lessons. Choose a topic to learn more, listen, and try a quick knowledge check.</p></div>
- <div class="lesson-tools"><label class="search-label" for="lessonSearch">Search topics</label><input id="lessonSearch" type="search" placeholder="Search: medicine, blood pressure, patient rights"></div>
- <div class="lesson-grid" id="lessonGrid">
-  <article class="lesson-card" data-search="blood pressure systolic diastolic"><span class="lesson-icon">♡</span><h3>Blood pressure</h3><p>What do the two numbers mean?</p><button class="text-link" data-lesson="bloodPressure">Learn more →</button></article>
-  <article class="lesson-card" data-search="heart rate pulse bpm"><span class="lesson-icon">♥</span><h3>Heart rate</h3><p>What is your pulse and what does BPM mean?</p><button class="text-link" data-lesson="heartRate">Learn more →</button></article>
-  <article class="lesson-card" data-search="oxygen saturation spo2"><span class="lesson-icon">◉</span><h3>Oxygen readings</h3><p>What does an SpO₂ reading tell you?</p><button class="text-link" data-lesson="oxygen">Learn more →</button></article>
-  <article class="lesson-card" data-search="medicine prescription dosage pharmacist"><span class="lesson-icon">✚</span><h3>Understanding medicine</h3><p>Learn common prescription terms and what to ask.</p><button class="text-link" data-lesson="prescriptions">Learn more →</button></article>
-  <article class="lesson-card" data-search="patient rights consent privacy records"><span class="lesson-icon">⚖</span><h3>Patient rights</h3><p>Learn about respectful care, privacy, and consent.</p><button class="text-link" data-lesson="patientRights">Learn more →</button></article>
-  <article class="lesson-card" data-search="healthcare costs mcp coverage"><span class="lesson-icon">＄</span><h3>Healthcare costs</h3><p>Understand coverage and what to ask before paying.</p><button class="text-link" data-lesson="costBasics">Learn more →</button></article>
- </div><p class="empty-state" id="emptyLessons" hidden>No topics match your search. Try another word.</p>
- <div class="learn-note"><strong>Have a question?</strong> Ask a healthcare professional or pharmacist to explain anything you are unsure about. You can also use the read-aloud controls at the top of the page.</div>
-</section>
-<section class="section services-section" id="services"><div class="section-heading"><p class="eyebrow">02 · FIND SERVICES</p><h2>Find the right place to start.</h2><p>These Newfoundland and Labrador services can help with different healthcare needs.</p></div>
- <div class="resource-grid">
-  <article class="resource-card"><span class="resource-icon">＋</span><p class="eyebrow">PRIMARY CARE</p><h3>Patient Connect NL</h3><p>Learn how to register if you are looking for a family doctor or nurse practitioner.</p><a class="button button-primary" href="https://patientconnect.nlchi.nl.ca/Default" target="_blank" rel="noopener noreferrer">Visit Patient Connect NL ↗</a></article>
-  <article class="resource-card"><span class="resource-icon">☎</span><p class="eyebrow">HEALTH INFORMATION</p><h3>811 HealthLine</h3><p>Call 811 for health information and guidance from a registered nurse.</p><a class="button button-primary" href="https://www.811healthline.ca/" target="_blank" rel="noopener noreferrer">Visit 811 HealthLine ↗</a></article>
-  <article class="resource-card"><span class="resource-icon">⌂</span><p class="eyebrow">CARE OPTIONS</p><h3>Virtual Primary Care NL</h3><p>Explore current primary care options for people without a regular provider.</p><a class="button button-primary" href="https://nlhealthservices.ca/find-health-care/primary-care-options/" target="_blank" rel="noopener noreferrer">Explore care options ↗</a></article>
- </div><p class="support-note"><strong>Important:</strong> HealthBridge does not provide medical care. For an emergency, call 911. Check each official service for current eligibility and instructions.</p>
-</section>
-<section class="section connect-section" id="connect"><div class="section-heading"><p class="eyebrow">03 · CONNECT</p><h2>Support should be easier to reach.</h2><p>HealthBridge focuses on two groups who can benefit from stronger connections.</p></div>
- <div class="connect-grid">
-  <article class="connect-card"><div class="connect-icon">♡</div><p class="eyebrow">FOR VOLUNTEERS</p><h3>Share your time and knowledge.</h3><p>Volunteers, healthcare students, and retired professionals can help seniors feel more confident navigating health information.</p><ul><li>Help explain general health information in plain language.</li><li>Support seniors with finding trusted services.</li><li>Offer friendly, respectful community support.</li></ul><p class="small-note">Volunteers do not diagnose, recommend treatment, or replace licensed healthcare professionals. Volunteer matching is a future feature of this prototype.</p></article>
-  <article class="connect-card featured"><div class="connect-icon">＋</div><p class="eyebrow">FOR SENIORS WITHOUT A FAMILY DOCTOR</p><h3>Find a path to primary care.</h3><p>If you do not have a family doctor or nurse practitioner, you are not alone. Start with the official provincial options.</p><ul><li>Review the Patient Connect NL registration process.</li><li>Explore available virtual primary care options.</li><li>Call 811 if you need health information or guidance.</li></ul><a class="button button-primary" href="https://patientconnect.nlchi.nl.ca/Default" target="_blank" rel="noopener noreferrer">Explore Patient Connect NL ↗</a></article>
- </div>
- <div class="shared-contact">
-  <p class="eyebrow">ONE SHARED CONTACT</p>
-  <h3>Arrange a volunteer visit</h3>
-  <p>Volunteers can use this email to coordinate a meeting with a senior. Seniors or their caregivers can also use it to ask about arranging support.</p>
-  <a class="button button-primary" id="coordinationEmail" href="mailto:YOUR_HEALTHBRIDGE_EMAIL@example.com?subject=HealthBridge%20volunteer%20meeting">Email HealthBridge to arrange a meeting ↗</a>
- </div>
-</section>
-<section class="section sensor-section" id="check-readings"><div class="section-heading"><p class="eyebrow">04 · CHECK YOUR READINGS</p><h2>Check your heart rate and oxygen level.</h2><p>Connect the Arduino sensor to view readings on this page.</p></div>
- <div class="sensor-panel">
-  <div class="sensor-intro"><span class="resource-icon">♥</span><div><h3>Health readings</h3><p id="sensorStatus" role="status" aria-live="polite">Not connected. Connect your sensor to begin.</p></div></div>
-  <div class="reading-grid">
-   <article class="reading-card"><p>Heart rate</p><div><span id="heartRateValue">—</span><small>BPM</small></div><p>Beats per minute</p></article>
-   <article class="reading-card"><p>Oxygen saturation</p><div><span id="oxygenValue">—</span><small>%</small></div><p>Estimated SpO₂</p></article>
-  </div>
-  <div class="sensor-actions"><button class="button button-primary" id="connectSensor" type="button">Connect Arduino</button><button class="button button-secondary" id="disconnectSensor" type="button" disabled>Disconnect</button></div>
- </div>
-</section>
+
+  <!-- HERO -->
+  <section class="hero section" id="home">
+
+    <div class="hero-copy">
+
+      <p class="eyebrow">Founded by QUEEN BEST HELPERS</p>
+
+      <h1>A clearer path to informed healthcare.</h1>
+
+      <p class="hero-lead">
+        HealthBridge helps patients understand health information,
+        find trusted services, and connect with people who can help.
+      </p>
+
+      <a class="button button-primary" href="#learn">
+        Explore HealthBridge <span aria-hidden="true">↓</span>
+      </a>
+
+    </div>
+
+    <div class="hero-panel">
+
+      <p class="eyebrow">FOUR WAYS WE HELP</p>
+
+      <a class="overview-link" href="#learn">
+        <span>01</span>
+        <div>
+          <strong>Learn</strong>
+          <small>Understand healthcare in plain language.</small>
+        </div>
+        <b>→</b>
+      </a>
+
+      <a class="overview-link" href="#services">
+        <span>02</span>
+        <div>
+          <strong>Find services</strong>
+          <small>Discover trusted support in Newfoundland and Labrador.</small>
+        </div>
+        <b>→</b>
+      </a>
+
+      <a class="overview-link" href="#connect">
+        <span>03</span>
+        <div>
+          <strong>Connect</strong>
+          <small>Bring volunteers and seniors together.</small>
+        </div>
+        <b>→</b>
+      </a>
+
+      <a class="overview-link" href="#check-readings">
+        <span>04</span>
+        <div>
+          <strong>Check readings</strong>
+          <small>View estimated heart-rate and breathing readings.</small>
+        </div>
+        <b>→</b>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- LEARN -->
+  <section class="section learn-section" id="learn">
+
+    <div class="section-heading">
+
+      <p class="eyebrow">01 · LEARN</p>
+
+      <h2>Understand healthcare, one topic at a time.</h2>
+
+      <p>
+        Short, easy-to-read lessons. Choose a topic to learn more,
+        listen, and try a quick knowledge check.
+      </p>
+
+    </div>
+
+    <div class="lesson-tools">
+
+      <label class="search-label" for="lessonSearch">
+        Search topics
+      </label>
+
+      <input
+        id="lessonSearch"
+        type="search"
+        placeholder="Search: medicine, blood pressure, patient rights"
+      >
+
+    </div>
+
+    <div class="lesson-grid" id="lessonGrid">
+
+      <article class="lesson-card" data-search="blood pressure systolic diastolic">
+
+        <span class="lesson-icon">♡</span>
+
+        <h3>Blood pressure</h3>
+
+        <p>What do the two numbers mean?</p>
+
+        <button class="text-link" data-lesson="bloodPressure" type="button">
+          Learn more →
+        </button>
+
+      </article>
+
+      <article class="lesson-card" data-search="heart rate pulse bpm">
+
+        <span class="lesson-icon">♥</span>
+
+        <h3>Heart rate</h3>
+
+        <p>What is your pulse and what does BPM mean?</p>
+
+        <button class="text-link" data-lesson="heartRate" type="button">
+          Learn more →
+        </button>
+
+      </article>
+
+      <article class="lesson-card" data-search="breathing rate respiration breaths per minute">
+
+        <span class="lesson-icon">〰</span>
+
+        <h3>Breathing rate</h3>
+
+        <p>What is breathing rate and how is it measured?</p>
+
+        <button class="text-link" data-lesson="breathingRate" type="button">
+          Learn more →
+        </button>
+
+      </article>
+
+      <article class="lesson-card" data-search="medicine prescription dosage pharmacist">
+
+        <span class="lesson-icon">✚</span>
+
+        <h3>Understanding medicine</h3>
+
+        <p>Learn common prescription terms and what to ask.</p>
+
+        <button class="text-link" data-lesson="prescriptions" type="button">
+          Learn more →
+        </button>
+
+      </article>
+
+      <article class="lesson-card" data-search="patient rights consent privacy records">
+
+        <span class="lesson-icon">⚖</span>
+
+        <h3>Patient rights</h3>
+
+        <p>Learn about respectful care, privacy, and consent.</p>
+
+        <button class="text-link" data-lesson="patientRights" type="button">
+          Learn more →
+        </button>
+
+      </article>
+
+      <article class="lesson-card" data-search="healthcare costs mcp coverage">
+
+        <span class="lesson-icon">＄</span>
+
+        <h3>Healthcare costs</h3>
+
+        <p>Understand coverage and what to ask before paying.</p>
+
+        <button class="text-link" data-lesson="costBasics" type="button">
+          Learn more →
+        </button>
+
+      </article>
+
+    </div>
+
+    <p class="empty-state" id="emptyLessons" hidden>
+      No topics match your search. Try another word.
+    </p>
+
+    <div class="learn-note">
+
+      <strong>Have a question?</strong>
+
+      Ask a healthcare professional or pharmacist to explain anything
+      you are unsure about. You can also use the read-aloud controls
+      at the top of the page.
+
+    </div>
+
+  </section>
+
+
+  <!-- FIND SERVICES -->
+  <section class="section services-section" id="services">
+
+    <div class="section-heading">
+
+      <p class="eyebrow">02 · FIND SERVICES</p>
+
+      <h2>Find the right place to start.</h2>
+
+      <p>
+        These Newfoundland and Labrador services can help with
+        different healthcare needs.
+      </p>
+
+    </div>
+
+    <div class="resource-grid">
+
+      <article class="resource-card">
+
+        <span class="resource-icon">＋</span>
+
+        <p class="eyebrow">PRIMARY CARE</p>
+
+        <h3>Patient Connect NL</h3>
+
+        <p>
+          Learn how to register if you are looking for a family doctor
+          or nurse practitioner.
+        </p>
+
+        <a
+          class="button button-primary"
+          href="https://patientconnect.nlchi.nl.ca/Default"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit Patient Connect NL ↗
+        </a>
+
+      </article>
+
+      <article class="resource-card">
+
+        <span class="resource-icon">☎</span>
+
+        <p class="eyebrow">HEALTH INFORMATION</p>
+
+        <h3>811 HealthLine</h3>
+
+        <p>
+          Call 811 for health information and guidance from a registered nurse.
+        </p>
+
+        <a
+          class="button button-primary"
+          href="https://www.811healthline.ca/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit 811 HealthLine ↗
+        </a>
+
+      </article>
+
+      <article class="resource-card">
+
+        <span class="resource-icon">⌂</span>
+
+        <p class="eyebrow">CARE OPTIONS</p>
+
+        <h3>Virtual Primary Care NL</h3>
+
+        <p>
+          Explore current primary care options for people without a regular provider.
+        </p>
+
+        <a
+          class="button button-primary"
+          href="https://nlhealthservices.ca/find-health-care/primary-care-options/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Explore care options ↗
+        </a>
+
+      </article>
+
+    </div>
+
+    <p class="support-note">
+      <strong>Important:</strong> HealthBridge does not provide medical care.
+      For an emergency, call 911. Check each official service for current
+      eligibility and instructions.
+    </p>
+
+  </section>
+
+
+  <!-- CONNECT -->
+  <section class="section connect-section" id="connect">
+
+    <div class="section-heading">
+
+      <p class="eyebrow">03 · CONNECT</p>
+
+      <h2>Support should be easier to reach.</h2>
+
+      <p>
+        HealthBridge focuses on two groups who can benefit
+        from stronger connections.
+      </p>
+
+    </div>
+
+    <div class="connect-grid">
+
+      <article class="connect-card">
+
+        <div class="connect-icon">♡</div>
+
+        <p class="eyebrow">FOR VOLUNTEERS</p>
+
+        <h3>Share your time and knowledge.</h3>
+
+        <p>
+          Volunteers, healthcare students, and retired professionals
+          can help seniors feel more confident navigating health information.
+        </p>
+
+        <ul>
+          <li>Help explain general health information in plain language.</li>
+          <li>Support seniors with finding trusted services.</li>
+          <li>Offer friendly, respectful community support.</li>
+        </ul>
+
+        <p class="small-note">
+          Volunteers do not diagnose, recommend treatment, or replace
+          licensed healthcare professionals. Volunteer matching is a
+          future feature of this prototype.
+        </p>
+
+      </article>
+
+      <article class="connect-card featured">
+
+        <div class="connect-icon">＋</div>
+
+        <p class="eyebrow">FOR SENIORS WITHOUT A FAMILY DOCTOR</p>
+
+        <h3>Find a path to primary care.</h3>
+
+        <p>
+          If you do not have a family doctor or nurse practitioner,
+          you are not alone. Start with the official provincial options.
+        </p>
+
+        <ul>
+          <li>Review the Patient Connect NL registration process.</li>
+          <li>Explore available virtual primary care options.</li>
+          <li>Call 811 if you need health information or guidance.</li>
+        </ul>
+
+        <a
+          class="button button-primary"
+          href="https://patientconnect.nlchi.nl.ca/Default"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Explore Patient Connect NL ↗
+        </a>
+
+      </article>
+
+    </div>
+
+    <div class="shared-contact">
+
+      <p class="eyebrow">ONE SHARED CONTACT</p>
+
+      <h3>Arrange a volunteer visit</h3>
+
+      <p>
+        Volunteers can use this email to coordinate a meeting with a senior.
+        Seniors or their caregivers can also use it to ask about arranging support.
+      </p>
+
+      <a
+        class="button button-primary"
+        id="coordinationEmail"
+        href="mailto:YOUR_HEALTHBRIDGE_EMAIL@example.com?subject=HealthBridge%20volunteer%20meeting"
+      >
+        Email HealthBridge to arrange a meeting ↗
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- CHECK READINGS -->
+  <section class="section sensor-section" id="check-readings">
+
+    <div class="section-heading">
+
+      <p class="eyebrow">04 · CHECK YOUR READINGS</p>
+
+      <h2>Check your heart rate and breathing rate.</h2>
+
+      <p>
+        Use a connected webcam to view estimated wellness readings.
+      </p>
+
+    </div>
+
+    <div class="sensor-panel">
+
+      <!-- CAMERA PREVIEW -->
+      <div class="camera-preview-container">
+
+        <div class="camera-preview-header">
+
+          <div>
+            <p class="eyebrow">LIVE CAMERA</p>
+            <h3>Position yourself in the frame.</h3>
+          </div>
+
+          <span id="cameraStatus">Camera not started</span>
+
+        </div>
+
+        <div class="camera-preview">
+
+          <video
+            id="cameraPreview"
+            autoplay
+            muted
+            playsinline
+            aria-label="Live camera preview"
+          ></video>
+
+          <!-- Face-tracking overlay -->
+          <canvas id="faceOverlay" aria-hidden="true"></canvas>
+
+          <div id="cameraPlaceholder">
+
+            <span>📷</span>
+
+            <p>Your camera preview will appear here.</p>
+
+            <small>Position your face comfortably in the frame.</small>
+
+          </div>
+
+        </div>
+
+        <p class="camera-help">
+          Make sure your face is visible and that you are in a well-lit area.
+        </p>
+
+      </div>
+
+
+      <!-- CAMERA CONTROLS -->
+      <div class="sensor-actions">
+
+        <button
+          class="button button-primary"
+          id="startCamera"
+          type="button"
+        >
+          Start camera preview
+        </button>
+
+        <button
+          class="button button-secondary"
+          id="stopCamera"
+          type="button"
+          disabled
+        >
+          Stop camera preview
+        </button>
+
+      </div>
+
+
+      <!-- MEASUREMENT CONTROLS -->
+      <div class="sensor-actions">
+
+        <button
+          class="button button-primary"
+          id="startMeasurement"
+          type="button"
+        >
+          Start measurement
+        </button>
+
+        <button
+          class="button button-secondary"
+          id="stopMeasurement"
+          type="button"
+          disabled
+        >
+          Stop measurement
+        </button>
+
+      </div>
+
+
+      <!-- SENSOR STATUS -->
+      <div class="sensor-intro">
+
+        <span class="resource-icon">♥</span>
+
+        <div>
+
+          <h3>Health readings</h3>
+
+          <p id="sensorStatus" role="status" aria-live="polite">
+            Camera not started. Press Start when you're ready.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- HEART RATE AND BREATHING RATE -->
+      <div class="reading-grid">
+
+        <article class="reading-card">
+
+          <p>Heart rate</p>
+
+          <div>
+            <span id="heartRateValue">—</span>
+            <small>BPM</small>
+          </div>
+
+          <p>Beats per minute</p>
+
+        </article>
+
+        <article class="reading-card">
+
+          <p>Breathing rate</p>
+
+          <div>
+            <span id="breathingRateValue">—</span>
+            <small>/min</small>
+          </div>
+
+          <p>Breaths per minute</p>
+
+        </article>
+
+      </div>
+
+
+      <!-- BREATHING RATE GRAPH -->
+      <div class="waveform-container">
+
+        <div class="waveform-header">
+
+          <div>
+            <h3>Breathing-rate trend</h3>
+            <p>Measurements over time</p>
+          </div>
+
+          <span id="waveformStatus">Waiting for data</span>
+
+        </div>
+
+        <canvas
+          id="breathingWaveform"
+          aria-label="Graph showing breathing-rate measurements over time"
+        ></canvas>
+
+      </div>
+
+    </div>
+
+  </section>
+
 </main>
-<footer class="site-footer"><a class="brand footer-brand" href="#home"><span class="brand-mark">✳</span> HealthBridge</a><p>Learn. Find services. Connect.</p><p class="footer-disclaimer"></p><p class="copyright">© 2026 HealthBridge · Hackathon Prototype</p></footer>
-<dialog class="lesson-dialog" id="lessonDialog" aria-labelledby="dialogTitle"><div class="dialog-inner"><button type="button" class="dialog-close" id="closeDialog" aria-label="Close lesson">×</button><p class="eyebrow">HEALTHBRIDGE LEARNING</p><h2 id="dialogTitle">Lesson</h2><div id="dialogContent" class="dialog-content"></div><div class="output-actions"><button type="button" class="button button-primary" id="readLesson">🔊 Read lesson aloud</button></div><div class="quiz-box"><h3>Quick knowledge check</h3><p id="quizPrompt"></p><div id="quizChoices"></div><p id="quizFeedback" aria-live="polite"></p></div></div></dialog>
-</body></html>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+  <a class="brand footer-brand" href="#home">
+    <span class="brand-mark">✳</span> HealthBridge
+  </a>
+
+  <p>Learn. Find services. Connect.</p>
+
+  <p class="footer-disclaimer"></p>
+
+  <p class="copyright">
+    © 2026 HealthBridge · Hackathon Prototype
+  </p>
+
+</footer>
+
+
+<!-- LESSON DIALOG -->
+<dialog class="lesson-dialog" id="lessonDialog" aria-labelledby="dialogTitle">
+
+  <div class="dialog-inner">
+
+    <button
+      type="button"
+      class="dialog-close"
+      id="closeDialog"
+      aria-label="Close lesson"
+    >
+      ×
+    </button>
+
+    <p class="eyebrow">HEALTHBRIDGE LEARNING</p>
+
+    <h2 id="dialogTitle">Lesson</h2>
+
+    <div id="dialogContent" class="dialog-content"></div>
+
+    <div class="output-actions">
+
+      <button
+        type="button"
+        class="button button-primary"
+        id="readLesson"
+      >
+        🔊 Read lesson aloud
+      </button>
+
+    </div>
+
+    <div class="quiz-box">
+
+      <h3>Quick knowledge check</h3>
+
+      <p id="quizPrompt"></p>
+
+      <div id="quizChoices"></div>
+
+      <p id="quizFeedback" aria-live="polite"></p>
+
+    </div>
+
+  </div>
+
+</dialog>
+
+</body>
+</html>
