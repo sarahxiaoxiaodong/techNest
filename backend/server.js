@@ -1,4 +1,4 @@
-
+import chatbotRouter from "./chatbot-route.js";
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
@@ -31,6 +31,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.static(projectFolder));
+app.use("/api/chatbot", chatbotRouter);
 
 console.log("Presage API key loaded:", Boolean(process.env.PRESAGE_API_KEY));
 

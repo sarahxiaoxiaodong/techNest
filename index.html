@@ -12,17 +12,100 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chatbot.css">
 
   <!-- MediaPipe face detection -->
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js"></script>
 
   <!-- Main JavaScript -->
   <script src="script.js" defer></script>
+  <script src="chatbot-ui.js" defer></script>
 </head>
 
+<!-- HEALTHBRIDGE AI CHATBOT -->
+
+<button id="chatbotToggle" class="chatbot-toggle"
+        aria-label="Open HealthBridge Assistant"
+        aria-expanded="false">
+  <span class="chatbot-toggle-icon">✦</span>
+  <span class="chatbot-notification"></span>
+</button>
+
+<div id="chatbotWindow" class="chatbot-window" hidden>
+
+  <div class="chatbot-header">
+    <div class="chatbot-header-info">
+      <div class="chatbot-avatar">✦</div>
+
+      <div>
+        <h3>HealthBridge Assistant</h3>
+        <span class="chatbot-online">
+          <span></span>
+          Here to help
+        </span>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      id="chatbotClose"
+      class="chatbot-close"
+      aria-label="Close chat"
+    >×</button>
+  </div>
+
+  <div class="chatbot-messages" id="chatbotMessages">
+
+  <div class="chatbot-message assistant-message">
+    <div class="chatbot-bubble">Hello! Welcome to HealthBridge!😊
+
+I'm here to help you explore the website, understand our educational resources, and help find information you're looking for. What can I help you with today?</div>
+</div>
+
+  </div>
+
+  <div class="chatbot-suggestions" id="chatbotSuggestions">
+    <button data-question="Where can I learn about blood pressure?">
+      Blood pressure information
+    </button>
+
+    <button data-question="Where can I find healthcare services?">
+      Find healthcare services
+    </button>
+
+    <button data-question="What can I find on HealthBridge?">
+      Explore HealthBridge
+    </button>
+  </div>
+
+  <form id="chatbotForm" class="chatbot-input-area">
+
+    <input
+      id="chatbotInput"
+      type="text"
+      placeholder="Ask me anything..."
+      autocomplete="off"
+      maxlength="1000"
+      required
+    >
+
+    <button type="submit" id="chatbotSend"
+            aria-label="Send message">
+      ➤
+    </button>
+
+  </form>
+
+  <div class="chatbot-disclaimer">
+    HealthBridge Assistant provides general website
+    information, not medical advice.
+  </div>
+
+</div>
 <body>
 
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -63,7 +146,7 @@
 
       <p class="eyebrow">Founded by QUEEN BEST HELPERS</p>
 
-      <h1>A clearer path to informed healthcare.</h1>
+      <h1>A clearer path to informed healthcare</h1>
 
       <p class="hero-lead">
         HealthBridge helps patients understand health information,
@@ -73,6 +156,10 @@
       <a class="button button-primary" href="#learn">
         Explore HealthBridge <span aria-hidden="true">↓</span>
       </a>
+      <button id="openAIChat" class="hero-ai-button">
+        <span>✦</span>
+        Chat with our AI Assistant
+      </button>
 
     </div>
 
@@ -243,16 +330,6 @@
       No topics match your search. Try another word.
     </p>
 
-    <div class="learn-note">
-
-      <strong>Have a question?</strong>
-
-      Ask a healthcare professional or pharmacist to explain anything
-      you are unsure about. You can also use the read-aloud controls
-      at the top of the page.
-
-    </div>
-
   </section>
 
 
@@ -347,9 +424,8 @@
     </div>
 
     <p class="support-note">
-      <strong>Important:</strong> HealthBridge does not provide medical care.
-      For an emergency, call 911. Check each official service for current
-      eligibility and instructions.
+      <strong>Important:</strong> HealthBridge does not provide immediate medical care.
+      For an emergency, please call 911.
     </p>
 
   </section>
@@ -392,12 +468,6 @@
           <li>Offer friendly, respectful community support.</li>
         </ul>
 
-        <p class="small-note">
-          Volunteers do not diagnose, recommend treatment, or replace
-          licensed healthcare professionals. Volunteer matching is a
-          future feature of this prototype.
-        </p>
-
       </article>
 
       <article class="connect-card featured">
@@ -439,16 +509,16 @@
       <h3>Arrange a volunteer visit</h3>
 
       <p>
-        Volunteers can use this email to coordinate a meeting with a senior.
+        Volunteers can use this email to coordinate virtual meetings with seniors.
         Seniors or their caregivers can also use it to ask about arranging support.
       </p>
 
       <a
         class="button button-primary"
         id="coordinationEmail"
-        href="mailto:YOUR_HEALTHBRIDGE_EMAIL@example.com?subject=HealthBridge%20volunteer%20meeting"
+        href="mailto:sdong_s@nlesd.ca?subject=HealthBridge%20volunteer%20meeting"
       >
-        Email HealthBridge to arrange a meeting ↗
+        Email us to arrange a meeting ↗
       </a>
 
     </div>

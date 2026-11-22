@@ -1,4 +1,654 @@
 
+/* ==========================================================
+   HEALTHBRIDGE — ORIGINAL WEBSITE FUNCTIONALITY RESTORED
+   Lessons • Search • Quizzes • Read Aloud • Navigation
+========================================================== */
+
+// ==========================================================
+// LESSON CONTENT
+// ==========================================================
+
+const lessonData = {
+
+  bloodPressure: {
+    title: "Understanding Blood Pressure",
+
+    content: `
+      <p>Blood pressure measures how strongly blood pushes
+      against the walls of your arteries as your heart pumps.</p>
+
+      <h3>What do the two numbers mean?</h3>
+
+      <p><strong>Systolic (top number):</strong>
+      Pressure when your heart beats.</p>
+
+      <p><strong>Diastolic (bottom number):</strong>
+      Pressure when your heart rests between beats.</p>
+
+      <h3>Understanding your reading</h3>
+
+      <p>A reading is written as two numbers, such as
+      120/80 mmHg.</p>
+
+      <p>Blood pressure can change throughout the day.
+      One measurement alone does not establish a diagnosis.</p>
+
+      <h3>Helpful tip</h3>
+
+      <p>Sit quietly for a few minutes before measuring.
+      Keep your arm supported and follow the instructions
+      provided with your blood pressure monitor.</p>
+
+      <p>Ask a healthcare professional what range is
+      appropriate for you.</p>
+    `,
+
+    quiz: {
+      question: "What does the top number in a blood pressure reading represent?",
+      choices: [
+        "Pressure when the heart beats",
+        "Pressure when the heart rests",
+        "Your breathing rate",
+        "Your body temperature"
+      ],
+      answer: 0,
+      explanation: "Correct! The systolic number measures pressure when your heart beats."
+    }
+  },
+
+  heartRate: {
+    title: "Understanding Heart Rate",
+
+    content: `
+      <p>Heart rate is the number of times your heart beats
+      in one minute.</p>
+
+      <h3>What does BPM mean?</h3>
+
+      <p>BPM stands for <strong>beats per minute</strong>.
+      It describes how many times your heart beats in
+      sixty seconds.</p>
+
+      <h3>What affects heart rate?</h3>
+
+      <ul>
+        <li>Physical activity and exercise.</li>
+        <li>Stress and emotions.</li>
+        <li>Sleep and rest.</li>
+        <li>Medications and certain health conditions.</li>
+        <li>Age and individual differences.</li>
+      </ul>
+
+      <h3>What is a typical resting heart rate?</h3>
+
+      <p>For many adults, a resting heart rate is
+      approximately 60–100 BPM. Individual circumstances
+      can affect what is appropriate.</p>
+
+      <p>Speak with a healthcare professional if you have
+      concerns about your heart rate.</p>
+    `,
+
+    quiz: {
+      question: "What does BPM stand for?",
+      choices: [
+        "Breaths Per Measurement",
+        "Beats Per Minute",
+        "Blood Pressure Measurement",
+        "Body Pulse Monitor"
+      ],
+      answer: 1,
+      explanation: "Exactly! BPM means beats per minute."
+    }
+  },
+
+  breathingRate: {
+    title: "Understanding Breathing Rate",
+
+    content: `
+      <p>Breathing rate is the number of breaths a person
+      takes in one minute.</p>
+
+      <h3>How is it measured?</h3>
+
+      <p>One breath includes breathing in and breathing out.
+      Breathing rate is usually measured while a person
+      is resting.</p>
+
+      <h3>What affects breathing rate?</h3>
+
+      <ul>
+        <li>Physical activity.</li>
+        <li>Stress and emotions.</li>
+        <li>Sleep.</li>
+        <li>Illness and other health conditions.</li>
+        <li>Age and individual circumstances.</li>
+      </ul>
+
+      <h3>What is a typical adult resting rate?</h3>
+
+      <p>A commonly referenced range for adults is
+      approximately 12–20 breaths per minute.</p>
+
+      <p>This range is a general reference, not a diagnosis.
+      A person's usual breathing pattern and symptoms
+      also matter.</p>
+
+      <h3>When should you seek help?</h3>
+
+      <p>If someone has severe difficulty breathing,
+      call 911. For non-emergency concerns, speak with
+      a healthcare professional.</p>
+    `,
+
+    quiz: {
+      question: "What counts as one complete breath?",
+      choices: [
+        "Breathing in only",
+        "Breathing out only",
+        "Breathing in and breathing out",
+        "Two heartbeats"
+      ],
+      answer: 2,
+      explanation: "Correct! One complete breath includes inhaling and exhaling."
+    }
+  },
+
+  prescriptions: {
+    title: "Understanding Medicine and Prescriptions",
+
+    content: `
+      <p>Medicines can help prevent, manage, and treat
+      different health conditions.</p>
+
+      <h3>Common prescription terms</h3>
+
+      <ul>
+        <li><strong>Dosage:</strong> The amount of medicine
+        prescribed.</li>
+
+        <li><strong>Frequency:</strong> How often medicine
+        should be taken.</li>
+
+        <li><strong>Side effect:</strong> An unwanted effect
+        that may occur when taking medicine.</li>
+
+        <li><strong>Refill:</strong> Getting another supply
+        of a prescribed medicine.</li>
+
+        <li><strong>Prescription:</strong> Instructions
+        from an authorized healthcare professional
+        for obtaining medicine.</li>
+      </ul>
+
+      <h3>Questions to ask your pharmacist</h3>
+
+      <ul>
+        <li>What is this medicine used for?</li>
+        <li>When and how should I take it?</li>
+        <li>Are there possible side effects?</li>
+        <li>Does it interact with my other medicines?</li>
+        <li>What should I do if I miss a dose?</li>
+      </ul>
+
+      <p>Never change your medication routine without
+      speaking with an appropriate healthcare professional.</p>
+    `,
+
+    quiz: {
+      question: "What does dosage refer to?",
+      choices: [
+        "The colour of a medicine",
+        "The amount of medicine prescribed",
+        "The name of a pharmacy",
+        "The price of a prescription"
+      ],
+      answer: 1,
+      explanation: "Correct! Dosage refers to the amount of medicine prescribed."
+    }
+  },
+
+  patientRights: {
+    title: "Understanding Patient Rights",
+
+    content: `
+      <p>Every patient deserves respectful, safe, and
+      appropriate healthcare.</p>
+
+      <h3>Important patient rights</h3>
+
+      <ul>
+        <li><strong>Respect:</strong> You deserve to be
+        treated with dignity and respect.</li>
+
+        <li><strong>Privacy:</strong> Your personal
+        healthcare information should be protected.</li>
+
+        <li><strong>Information:</strong> You can ask
+        questions and request explanations about your care.</li>
+
+        <li><strong>Consent:</strong> You generally have
+        the right to make informed decisions about
+        your healthcare.</li>
+
+        <li><strong>Participation:</strong> You can take
+        part in decisions about your care.</li>
+      </ul>
+
+      <h3>Remember</h3>
+
+      <p>You are allowed to ask your healthcare provider
+      to explain something again if you do not understand.</p>
+
+      <p>You can also ask for information in a format
+      that is easier for you to understand.</p>
+    `,
+
+    quiz: {
+      question: "What should you do if you do not understand a healthcare explanation?",
+      choices: [
+        "Pretend you understand",
+        "Avoid asking questions",
+        "Ask your healthcare provider to explain it again",
+        "Ignore the information"
+      ],
+      answer: 2,
+      explanation: "Exactly! Patients can ask questions and request clearer explanations."
+    }
+  },
+
+  costBasics: {
+    title: "Understanding Healthcare Costs",
+
+    content: `
+      <p>Healthcare costs can vary depending on the service,
+      coverage, and individual circumstances.</p>
+
+      <h3>What is MCP?</h3>
+
+      <p>The Medical Care Plan (MCP) is Newfoundland
+      and Labrador's publicly funded health insurance plan
+      for eligible residents.</p>
+
+      <h3>What should you know?</h3>
+
+      <ul>
+        <li>Not every healthcare service is necessarily covered.</li>
+        <li>Prescription coverage has separate eligibility
+        and program requirements.</li>
+        <li>Some services may involve out-of-pocket costs.</li>
+        <li>Coverage can depend on your circumstances.</li>
+      </ul>
+
+      <h3>Questions worth asking</h3>
+
+      <ul>
+        <li>Is this service covered by MCP?</li>
+        <li>Will I need to pay anything?</li>
+        <li>Are there financial assistance programs?</li>
+        <li>Where can I find official coverage information?</li>
+      </ul>
+
+      <p>For accurate and current information, consult
+      Newfoundland and Labrador Health Services or
+      the provincial government.</p>
+    `,
+
+    quiz: {
+      question: "What should you do before paying for a healthcare service?",
+      choices: [
+        "Assume everything is covered",
+        "Ask about coverage and possible costs",
+        "Avoid checking your eligibility",
+        "Ignore the service information"
+      ],
+      answer: 1,
+      explanation: "Correct! Asking about coverage beforehand can help you understand potential costs."
+    }
+  }
+
+};
+
+// ==========================================================
+// LESSON ELEMENTS
+// ==========================================================
+
+const lessonSearch =
+  document.getElementById("lessonSearch");
+
+const lessonGrid =
+  document.getElementById("lessonGrid");
+
+const emptyLessons =
+  document.getElementById("emptyLessons");
+
+const lessonDialog =
+  document.getElementById("lessonDialog");
+
+const closeDialog =
+  document.getElementById("closeDialog");
+
+const dialogTitle =
+  document.getElementById("dialogTitle");
+
+const dialogContent =
+  document.getElementById("dialogContent");
+
+const readLessonButton =
+  document.getElementById("readLesson");
+
+const quizPrompt =
+  document.getElementById("quizPrompt");
+
+const quizChoices =
+  document.getElementById("quizChoices");
+
+const quizFeedback =
+  document.getElementById("quizFeedback");
+
+let currentLesson = null;
+let speechUtterance = null;
+
+// ==========================================================
+// OPEN LESSON
+// ==========================================================
+
+function openLesson(lessonKey) {
+
+  const lesson = lessonData[lessonKey];
+
+  if (!lesson || !lessonDialog) {
+    console.error("Lesson not found:", lessonKey);
+    return;
+  }
+
+  currentLesson = lesson;
+
+  // Stop any previous read-aloud.
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+
+  if (dialogTitle) {
+    dialogTitle.textContent = lesson.title;
+  }
+
+  if (dialogContent) {
+    dialogContent.innerHTML = lesson.content;
+  }
+
+  if (quizPrompt) {
+    quizPrompt.textContent = lesson.quiz.question;
+  }
+
+  if (quizFeedback) {
+    quizFeedback.textContent = "";
+  }
+
+  // Generate quiz buttons.
+  if (quizChoices) {
+
+    quizChoices.innerHTML = "";
+
+    lesson.quiz.choices.forEach((choice, index) => {
+
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "quiz-choice";
+      button.textContent = choice;
+
+      button.addEventListener("click", () => {
+
+        // Prevent answering multiple times.
+        if (quizChoices.dataset.answered === "true") {
+          return;
+        }
+
+        quizChoices.dataset.answered = "true";
+
+        const correct = index === lesson.quiz.answer;
+
+        if (correct) {
+
+          button.classList.add("correct");
+
+          quizFeedback.textContent =
+            "✓ Correct! " + lesson.quiz.explanation;
+
+        } else {
+
+          button.classList.add("incorrect");
+
+          const correctButton =
+            quizChoices.children[lesson.quiz.answer];
+
+          if (correctButton) {
+            correctButton.classList.add("correct");
+          }
+
+          quizFeedback.textContent =
+            "Not quite. " + lesson.quiz.explanation;
+        }
+
+      });
+
+      quizChoices.appendChild(button);
+
+    });
+
+    quizChoices.dataset.answered = "false";
+  }
+
+  // Show the dialog.
+  if (!lessonDialog.open) {
+    lessonDialog.showModal();
+  }
+}
+
+// ==========================================================
+// LEARN MORE BUTTONS
+// ==========================================================
+
+document.addEventListener("click", event => {
+
+  const button = event.target.closest("[data-lesson]");
+
+  if (!button) return;
+
+  const lessonKey = button.dataset.lesson;
+
+  openLesson(lessonKey);
+
+});
+
+// ==========================================================
+// CLOSE LESSON DIALOG
+// ==========================================================
+
+closeDialog?.addEventListener("click", () => {
+
+  if (lessonDialog?.open) {
+    lessonDialog.close();
+  }
+
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+
+});
+
+// Stop speech when dialog closes.
+lessonDialog?.addEventListener("close", () => {
+
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+
+});
+
+// ==========================================================
+// READ LESSON ALOUD
+// ==========================================================
+
+readLessonButton?.addEventListener("click", () => {
+
+  if (!("speechSynthesis" in window)) {
+
+    if (quizFeedback) {
+      quizFeedback.textContent =
+        "Read-aloud is not supported by this browser.";
+    }
+
+    return;
+  }
+
+  if (!currentLesson || !dialogContent) return;
+
+  // Stop existing speech.
+  window.speechSynthesis.cancel();
+
+  const text = [
+    currentLesson.title,
+    dialogContent.innerText
+  ].join(". ");
+
+  speechUtterance = new SpeechSynthesisUtterance(text);
+
+  speechUtterance.lang = "en-CA";
+  speechUtterance.rate = 0.9;
+  speechUtterance.pitch = 1;
+
+  speechUtterance.onstart = () => {
+    readLessonButton.textContent = "⏸ Reading lesson...";
+  };
+
+  speechUtterance.onend = () => {
+    readLessonButton.textContent = "🔊 Read lesson aloud";
+  };
+
+  speechUtterance.onerror = () => {
+    readLessonButton.textContent = "🔊 Read lesson aloud";
+  };
+
+  window.speechSynthesis.speak(speechUtterance);
+
+});
+
+// ==========================================================
+// SEARCH LESSONS
+// ==========================================================
+
+lessonSearch?.addEventListener("input", () => {
+
+  const searchTerm =
+    lessonSearch.value.trim().toLowerCase();
+
+  const cards = lessonGrid?.querySelectorAll(".lesson-card");
+
+  if (!cards) return;
+
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+
+    const searchableText = [
+      card.dataset.search || "",
+      card.innerText || ""
+    ].join(" ").toLowerCase();
+
+    const matches =
+      searchableText.includes(searchTerm);
+
+    card.hidden = !matches;
+
+    if (matches) {
+      visibleCount++;
+    }
+
+  });
+
+  if (emptyLessons) {
+    emptyLessons.hidden = visibleCount !== 0;
+  }
+
+});
+
+// ==========================================================
+// MOBILE NAVIGATION
+// ==========================================================
+
+const menuToggle =
+  document.getElementById("menuToggle");
+
+const mainNav =
+  document.getElementById("mainNav");
+
+function closeMobileMenu() {
+
+  if (!menuToggle || !mainNav) return;
+
+  mainNav.classList.remove("open");
+
+  menuToggle.setAttribute("aria-expanded", "false");
+
+  menuToggle.setAttribute(
+    "aria-label",
+    "Open navigation"
+  );
+
+}
+
+menuToggle?.addEventListener("click", () => {
+
+  if (!mainNav) return;
+
+  const isOpen =
+    mainNav.classList.toggle("open");
+
+  menuToggle.setAttribute(
+    "aria-expanded",
+    String(isOpen)
+  );
+
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation" : "Open navigation"
+  );
+
+});
+
+// Close navigation after selecting a section.
+mainNav?.querySelectorAll("a").forEach(link => {
+
+  link.addEventListener("click", closeMobileMenu);
+
+});
+
+// Close menu when clicking elsewhere.
+document.addEventListener("click", event => {
+
+  if (!mainNav || !menuToggle) return;
+
+  if (
+    !mainNav.contains(event.target) &&
+    !menuToggle.contains(event.target)
+  ) {
+    closeMobileMenu();
+  }
+
+});
+
+// ==========================================================
+// INITIALIZATION
+// ==========================================================
+
+console.log(
+  "HealthBridge website functionality restored:",
+  Object.keys(lessonData).length,
+  "lessons available."
+);
+
 /* ==========================================
    HEALTHBRIDGE - COMPLETE CAMERA + PRESAGE
    ========================================== */
