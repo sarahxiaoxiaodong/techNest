@@ -24,6 +24,8 @@
   <!-- Main JavaScript -->
   <script src="script.js" defer></script>
   <script src="chatbot-ui.js" defer></script>
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js"></script>
+  <script src="auth.js"></script>
 </head>
 
 <!-- HEALTHBRIDGE AI CHATBOT -->
@@ -107,7 +109,6 @@ I'm here to help you explore the website, understand our educational resources, 
 
 </div>
 <body>
-
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- HEADER -->
@@ -133,6 +134,9 @@ I'm here to help you explore the website, understand our educational resources, 
     <a href="#services">Find services</a>
     <a href="#connect">Connect</a>
     <a href="#check-readings">Check readings</a>
+    <button class="nav-login-btn" onclick="openAuthPopup()">
+    Log In
+    </button>
   </nav>
 
 </header>
@@ -776,6 +780,36 @@ I'm here to help you explore the website, understand our educational resources, 
   </div>
 
 </dialog>
+<div id="auth-popup" class="auth-overlay" onclick="closeAuthPopup(event)">
+    <div class="auth-modal" onclick="event.stopPropagation()">
 
+        <button class="auth-close" onclick="closeAuthPopup()">
+            &times;
+        </button>
+
+        <div id="hb-login-buttons">
+            <h2>Welcome to HealthBridge</h2>
+            <p>Sign in to your account or create one.</p>
+
+            <button class="auth-primary" onclick="login()">
+                Log In
+            </button>
+
+            <button class="auth-secondary" onclick="signup()">
+                Create Account
+            </button>
+        </div>
+
+        <div id="hb-user-section" hidden>
+            <h2>Welcome back!</h2>
+            <p id="hb-user-name"></p>
+
+            <button class="auth-primary" onclick="logout()">
+                Log Out
+            </button>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>

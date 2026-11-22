@@ -2164,3 +2164,259 @@ button:disabled {
 
 /* END HEALTHBRIDGE DESIGN ENHANCEMENT */
 
+.nav-login-btn {
+    background: #d58aa5;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.nav-login-btn:hover {
+    background: #bd718f;
+}
+
+.auth-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(35, 25, 30, 0.45);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-overlay.active {
+    display: flex;
+    animation: authFade 0.2s ease;
+}
+
+.auth-modal {
+    background: #fff;
+    width: 100%;
+    max-width: 420px;
+    padding: 38px 30px;
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+    animation: authPop 0.25s ease;
+}
+
+.auth-modal h2 {
+    color: #bd718f;
+    margin-bottom: 10px;
+}
+
+.auth-modal p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.auth-close {
+    position: absolute;
+    top: 12px;
+    right: 17px;
+    background: none;
+    border: none;
+    font-size: 27px;
+    cursor: pointer;
+    color: #888;
+}
+
+.auth-primary,
+.auth-secondary {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 12px;
+    transition: 0.2s;
+}
+
+.auth-primary {
+    background: #d58aa5;
+    color: white;
+    border: none;
+}
+
+.auth-secondary {
+    background: white;
+    color: #bd718f;
+    border: 1px solid #d58aa5;
+}
+
+.auth-primary:hover {
+    background: #bd718f;
+}
+
+.auth-secondary:hover {
+    background: #fff4f8;
+}
+
+@keyframes authFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes authPop {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* NAVIGATION BUTTON */
+.nav-login-btn {
+    background: #c987a0;
+    color: white;
+    border: 1px solid #c987a0;
+    border-radius: 9px;
+    padding: 12px 23px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav-login-btn:hover {
+    background: #b87590;
+}
+
+/* POPUP OVERLAY */
+.auth-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(35, 29, 33, 0.42);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-overlay.active {
+    display: flex;
+}
+
+/* POPUP */
+.auth-modal {
+    background: #fff;
+    width: 100%;
+    max-width: 440px;
+    padding: 42px 36px 35px;
+    border-radius: 18px;
+    position: relative;
+    text-align: center;
+    border: 1px solid #eee4e8;
+    box-shadow: 0 8px 30px rgba(50, 30, 40, 0.12);
+}
+
+/* HEADING */
+.auth-modal h2 {
+    color: #92546d;
+    font-size: 25px;
+    margin: 8px 0 12px;
+}
+
+.auth-modal p {
+    color: #666066;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* CLOSE BUTTON */
+.auth-close {
+    position: absolute;
+    top: 15px;
+    right: 17px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: #f8eff3;
+    color: #805568;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* LOGIN AND SIGNUP */
+.auth-primary,
+.auth-secondary {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 13px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 14px;
+}
+
+.auth-primary {
+    background: #c987a0;
+    color: white;
+    border: 1px solid #c987a0;
+}
+
+.auth-primary:hover {
+    background: #b87590;
+}
+
+.auth-secondary {
+    background: white;
+    color: #92546d;
+    border: 1px solid #c987a0;
+}
+
+.auth-secondary:hover {
+    background: #fbf4f7;
+}
+
+/* USER PROFILE */
+#hb-user-name {
+    background: #fbf4f7;
+    border: 1px solid #eee0e7;
+    border-radius: 10px;
+    padding: 14px;
+    color: #805568;
+    font-weight: 600;
+}
+
+/* ACCESSIBILITY */
+.auth-primary:focus-visible,
+.auth-secondary:focus-visible,
+.auth-close:focus-visible,
+.nav-login-btn:focus-visible {
+    outline: 3px solid #805568;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    .auth-modal {
+        padding: 40px 23px 28px;
+    }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
